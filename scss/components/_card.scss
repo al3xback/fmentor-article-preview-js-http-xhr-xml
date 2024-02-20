@@ -1,0 +1,211 @@
+@use '../abstracts/variables' as var;
+@use '../abstracts/functions' as func;
+
+.card,
+.card__image,
+.card__image-inner,
+.card__content,
+.card__author-img-box,
+.card__author-info,
+.card__share,
+.card__share-box,
+.card__share-action-buttons li {
+	display: flex;
+	flex-direction: column;
+}
+
+.card__author,
+.card__share-action,
+.card__share-action-buttons {
+	display: flex;
+	align-items: center;
+}
+
+.card {
+	width: 100%;
+	max-width: func.em(320, var.$font-size-primary);
+	background-color: var.$color-white;
+	margin: func.em(30, var.$font-size-primary) 0
+		func.em(60, var.$font-size-primary);
+	border-radius: 8px;
+	box-shadow: 0 16px 30px rgba(0, 0, 0, 0.04);
+}
+
+.card__image {
+	border-radius: 8px 8px 0 0;
+}
+
+.card__image * {
+	border-radius: inherit;
+}
+
+.card__image-inner {
+	position: relative;
+	height: 0;
+	padding-bottom: 62%;
+	background-color: var.$color-desaturated-dark-blue;
+}
+
+.card__image-inner img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.card__content {
+	position: relative;
+	gap: func.em(15, var.$font-size-primary);
+	padding: func.em(32, var.$font-size-primary)
+		func.em(32, var.$font-size-primary) func.em(20, var.$font-size-primary);
+}
+
+.card__desc {
+	margin-bottom: func.em(10, var.$font-size-primary);
+}
+
+.card__author {
+	gap: func.em(15, var.$font-size-primary);
+	padding-right: func.em(45, var.$font-size-primary);
+}
+
+.card__author-img-box {
+	flex: none;
+}
+
+.card__author-img {
+	width: func.em(40, var.$font-size-primary);
+	height: auto;
+	border-radius: 50%;
+}
+
+.card__author-name {
+	margin-bottom: func.em(1, 13);
+	font-size: func.em(13, var.$font-size-primary);
+}
+
+.card__author-post-date {
+	color: var.$color-grayish-blue;
+}
+
+.card__share {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+.card__share-checkbox {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.card__share-box {
+	position: relative;
+	align-items: flex-end;
+	padding: func.em(24, var.$font-size-primary)
+		func.em(32, var.$font-size-primary);
+	background-color: transparent;
+	transition: all 0.24s;
+}
+
+.card__share-action {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	gap: func.em(20, var.$font-size-primary);
+	padding: inherit;
+	padding-right: func.em(90, var.$font-size-primary);
+	visibility: hidden;
+}
+
+.card__share-action-txt {
+	text-transform: uppercase;
+	color: var.$color-grayish-blue;
+	letter-spacing: func.em(3, var.$font-size-primary);
+}
+
+.card__share-action-buttons {
+	gap: func.em(15, var.$font-size-primary);
+}
+
+.btn--share-toggle {
+	position: relative;
+	z-index: 1;
+}
+
+.card__share-checkbox:checked + .card__share-box {
+	background-color: var.$color-dark-grayish-blue;
+}
+
+.card__share-checkbox:checked + .card__share-box .card__share-action {
+	visibility: visible;
+}
+
+.card__share-checkbox:checked + .card__share-box .btn--share-toggle {
+	background-color: var.$color-desaturated-dark-blue;
+	border-color: var.$color-desaturated-dark-blue;
+	color: var.$color-white;
+}
+
+@media (min-width: 56em) {
+	.card {
+		flex-direction: row;
+		max-width: func.em(720, var.$font-size-primary);
+	}
+
+	.card__image {
+		flex-shrink: 0;
+		flex-basis: func.em(280, var.$font-size-primary);
+		max-width: func.em(280, var.$font-size-primary);
+		border-radius: 8px 0 0 8px;
+	}
+
+	.card__image-inner,
+	.card__image-inner img {
+		position: static;
+	}
+
+	.card__image-inner {
+		flex: auto;
+		height: auto;
+		padding-bottom: 0;
+	}
+
+	.card__title {
+		font-size: func.em(20, var.$font-size-primary);
+	}
+
+	.card__share-action {
+		top: auto;
+		left: auto;
+		bottom: func.em(80, var.$font-size-primary);
+		right: func.em(-68, var.$font-size-primary);
+		padding: func.em(16, var.$font-size-primary)
+			func.em(32, var.$font-size-primary);
+		background-color: var.$color-dark-grayish-blue;
+		border-radius: 10px;
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+	}
+
+	.card__share-action::before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: func.em(-7.5, var.$font-size-primary);
+		width: func.em(15, var.$font-size-primary);
+		height: func.em(15, var.$font-size-primary);
+		background-color: inherit;
+		transform: translateX(-50%) rotate(45deg);
+	}
+
+	.card__share-checkbox:checked + .card__share-box {
+		background-color: transparent;
+	}
+}
