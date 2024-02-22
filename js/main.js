@@ -5,9 +5,11 @@ const URL =
 
 const cardWrapperEl = document.querySelector('.card-wrapper');
 const cardTemplate = document.getElementById('card-template');
+const cardImageTemplate = document.getElementById('card-image-template');
 const cardShareButtonTemplate = document.getElementById(
 	'card-share-button-template'
 );
+const cardContentTemplate = document.getElementById('card-content-template');
 const loadingEl = document.querySelector('.loading');
 
 const removeLoading = () => {
@@ -54,29 +56,42 @@ const renderCardContent = (data) => {
 	const cardTemplateNode = document.importNode(cardTemplate.content, true);
 	const cardEl = cardTemplateNode.querySelector('.card');
 
-	const cardTitleEl = cardEl.querySelector('.card__title');
-	cardTitleEl.textContent = title;
-
-	const cardDescEl = cardEl.querySelector('.card__desc');
-	cardDescEl.textContent = description;
-
-	const cardImageEl = cardEl.querySelector('.card__image img');
+	/* [card image] */
+	const cardImageTemplateNode = document.importNode(
+		cardImageTemplate.content,
+		true
+	);
+	const cardImageEl = cardImageTemplateNode.querySelector('.card__image img');
 	cardImageEl.src = './images/' + image;
 	cardImageEl.alt = image.substring(0, image.indexOf('.'));
 
-	const cardAuthorImageEl = cardEl.querySelector('.card__author-img');
+	/* [card content] */
+	const cardContentTemplateNode = document.importNode(
+		cardContentTemplate.content,
+		true
+	);
+	const cardContentEl =
+		cardContentTemplateNode.querySelector('.card__content');
+
+	const cardTitleEl = cardContentEl.querySelector('.card__title');
+	cardTitleEl.textContent = title;
+
+	const cardDescEl = cardContentEl.querySelector('.card__desc');
+	cardDescEl.textContent = description;
+
+	const cardAuthorImageEl = cardContentEl.querySelector('.card__author-img');
 	cardAuthorImageEl.src = './images/' + author[1];
 	cardAuthorImageEl.alt = author[0];
 
-	const cardAuthorNameEl = cardEl.querySelector('.card__author-name');
+	const cardAuthorNameEl = cardContentEl.querySelector('.card__author-name');
 	cardAuthorNameEl.textContent = author[0];
 
-	const cardAuthorPostDateEl = cardEl.querySelector(
+	const cardAuthorPostDateEl = cardContentEl.querySelector(
 		'.card__author-post-date'
 	);
 	cardAuthorPostDateEl.textContent = author[2];
 
-	const cardShareButtonsEl = cardEl.querySelector(
+	const cardShareButtonsEl = cardContentEl.querySelector(
 		'.card__share-action-buttons'
 	);
 
@@ -98,7 +113,10 @@ const renderCardContent = (data) => {
 		cardShareButtonsEl.appendChild(cardShareButtonTemplateNode);
 	}
 
+	/* [init] */
 	removeLoading();
+	cardEl.appendChild(cardImageTemplateNode);
+	cardEl.appendChild(cardContentTemplateNode);
 	cardWrapperEl.appendChild(cardTemplateNode);
 };
 

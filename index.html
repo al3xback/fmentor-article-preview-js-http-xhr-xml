@@ -37,10 +37,20 @@
 	<body>
 		<style>
 			.card-wrapper {
+				flex: auto;
 				display: flex;
 				flex-direction: column;
+				align-items: center;
 			}
 		</style>
+
+		<template id="card-image-template">
+			<div class="card__image">
+				<div class="card__image-inner">
+					<img width="280" height="278" />
+				</div>
+			</div>
+		</template>
 
 		<template id="card-share-button-template">
 			<li>
@@ -50,57 +60,49 @@
 			</li>
 		</template>
 
+		<template id="card-content-template">
+			<div class="card__content">
+				<h2 class="card__title"></h2>
+				<p class="card__desc"></p>
+				<div class="card__author">
+					<div class="card__author-img-box">
+						<img class="card__author-img" width="40" height="40" />
+					</div>
+					<div class="card__author-info">
+						<h3 class="card__author-name"></h3>
+						<p class="card__author-post-date"></p>
+					</div>
+				</div>
+				<div class="card__share">
+					<input
+						type="checkbox"
+						name="toggle"
+						id="share-toggle"
+						class="card__share-checkbox" />
+					<div class="card__share-box">
+						<div class="card__share-action">
+							<span class="card__share-action-txt">Share</span>
+							<ul class="card__share-action-buttons"></ul>
+						</div>
+						<label
+							for="share-toggle"
+							class="btn btn--icon btn--share-toggle">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="15"
+								height="13">
+								<path
+									fill="currentColor"
+									d="M15 6.495L8.766.014V3.88H7.441C3.33 3.88 0 7.039 0 10.936v2.049l.589-.612C2.59 10.294 5.422 9.11 8.39 9.11h.375v3.867L15 6.495z"></path>
+							</svg>
+						</label>
+					</div>
+				</div>
+			</div>
+		</template>
+
 		<template id="card-template">
-			<article class="card">
-				<div class="card__image">
-					<div class="card__image-inner">
-						<img width="280" height="278" />
-					</div>
-				</div>
-				<div class="card__content">
-					<h2 class="card__title"></h2>
-					<p class="card__desc"></p>
-					<div class="card__author">
-						<div class="card__author-img-box">
-							<img
-								class="card__author-img"
-								width="40"
-								height="40" />
-						</div>
-						<div class="card__author-info">
-							<h3 class="card__author-name"></h3>
-							<p class="card__author-post-date"></p>
-						</div>
-					</div>
-					<div class="card__share">
-						<input
-							type="checkbox"
-							name="toggle"
-							id="share-toggle"
-							class="card__share-checkbox" />
-						<div class="card__share-box">
-							<div class="card__share-action">
-								<span class="card__share-action-txt"
-									>Share</span
-								>
-								<ul class="card__share-action-buttons"></ul>
-							</div>
-							<label
-								for="share-toggle"
-								class="btn btn--icon btn--share-toggle">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="15"
-									height="13">
-									<path
-										fill="currentColor"
-										d="M15 6.495L8.766.014V3.88H7.441C3.33 3.88 0 7.039 0 10.936v2.049l.589-.612C2.59 10.294 5.422 9.11 8.39 9.11h.375v3.867L15 6.495z"></path>
-								</svg>
-							</label>
-						</div>
-					</div>
-				</div>
-			</article>
+			<article class="card"></article>
 		</template>
 
 		<header>
