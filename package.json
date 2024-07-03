@@ -1,8 +1,8 @@
 {
 	"name": "fmentor-article-preview-js-http-xhr-xml",
+	"private": true,
 	"version": "1.0.0",
-	"description": "article preview component using js http xhr and xml",
-	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"sass-dev": "sass --watch scss/main.scss css/main.css",
 		"sass-prod": "sass scss/main.scss css/main.css --style=compressed --no-source-map",
